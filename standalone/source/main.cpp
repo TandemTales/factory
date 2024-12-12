@@ -1,10 +1,11 @@
-#include "template.h"
+#include "factory.h"
 
 using namespace tt;
 
 int main()
 {
-	c_template tpl;
-	tpl.go_template();
+	c_factory factory;
+	factory.go_factory();
 	return 0;
 }
+

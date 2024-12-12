@@ -1,4 +1,4 @@
-# template
+# factory
 Generate project files by running:
 - "generate.bat"
 

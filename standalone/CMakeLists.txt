@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
-project(template_standalone LANGUAGES CXX)
+project(factory_standalone LANGUAGES CXX)
 
 # --- Import tools ----
 include(../cmake/tools.cmake)
@@ -7,7 +7,7 @@ include(../cmake/tools.cmake)
 # ---- Dependencies ----
 include(../cmake/CPM.cmake)
 
-CPMAddPackage(NAME template SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
+CPMAddPackage(NAME factory SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
 
 # ---- Create standalone executable ----
 file(GLOB sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp")
@@ -23,10 +23,10 @@ endif()
 
 set_target_properties(${PROJECT_NAME} PROPERTIES 
     CXX_STANDARD 20
-    OUTPUT_NAME "template"
+    OUTPUT_NAME "factory"
 )
 
-target_link_libraries(${PROJECT_NAME} template)
+target_link_libraries(${PROJECT_NAME} factory)
 
 # This line will create a folder hierarchy in the Visual Studio solution explorer
 # that matches the directory structure under ${CMAKE_CURRENT_SOURCE_DIR}/source.
