@@ -8,7 +8,7 @@ project(
 	LANGUAGES CXX)
 
 # ---- Fetch CPM ----
-set(CPM_DOWNLOAD_VERSION 0.32.0) 
+set(CPM_DOWNLOAD_VERSION 0.40.2) 
 set(CPM_DOWNLOAD_LOCATION "${CMAKE_BINARY_DIR}/cmake/CPM_${CPM_DOWNLOAD_VERSION}.cmake")
 if(NOT (EXISTS ${CPM_DOWNLOAD_LOCATION}))
   message(STATUS "Downloading CPM.cmake v${CPM_DOWNLOAD_VERSION}")
@@ -28,6 +28,22 @@ CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.8.0")
 #	#VERSION 0.0.1
 #	GIT_TAG main
 #)
+
+# Add package: TandemTales/core
+CPMAddPackage(
+	NAME core
+	GITHUB_REPOSITORY TandemTales/core
+	#VERSION 0.0.1
+	GIT_TAG main
+)
+
+# Add package: TandemTales/json
+CPMAddPackage(
+	NAME json
+	GITHUB_REPOSITORY TandemTales/json
+	#VERSION 0.0.1
+	GIT_TAG main
+)
 
 # ---- Add source files ----
 file(GLOB_RECURSE sources CONFIGURE_DEPENDS 
@@ -57,6 +73,8 @@ target_include_directories(
 
 # Example link library:
 #target_link_libraries(${PROJECT_NAME} hash)
+
+target_link_libraries(${PROJECT_NAME} core json)
 
 # This line will create a folder hierarchy in the Visual Studio solution explorer
 # that matches the directory structure under ${CMAKE_CURRENT_SOURCE_DIR}/source.
