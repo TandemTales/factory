@@ -1,6 +1,6 @@
 #pragma once
 
-#include "blueprint.h"
+#include "manager.h"
 #include "json/json.h"
 #include "core/hash.h"
 #include <string>
@@ -16,13 +16,13 @@ namespace tt
 		void create();
 
 		template<class T>
-		void register_blueprint()
+		void register_manager()
 		{
-			m_blueprints[T::get_hash()] = new T();
+			m_managers[T::manager_type] = new T();
 		}
 
 	private:
 		c_json m_data;
-		std::unordered_map<c_hash, c_blueprint*, s_hash_hasher> m_blueprints;
+		std::unordered_map<c_hash, c_manager*, s_hash_hasher> m_managers;
 	};
 }

@@ -1,12 +1,12 @@
 #include "factory.h"
-#include "blueprint.h"
+#include "manager.h"
 #include <string>
 
 namespace tt
 {
 	c_factory::~c_factory()
 	{
-		for (auto& [key, value] : m_blueprints)
+		for (auto& [key, value] : m_managers)
 		{
 			delete value;
 		}
@@ -17,15 +17,15 @@ namespace tt
 		m_data.load(file_name);
 		if (m_data.is_array())
 		{
-			for (c_json blueprint_data : m_data)
+			for (c_json data : m_data)
 			{
-				if (blueprint_data["type"].is_string())
+				if (data["type"].is_string())
 				{
-					c_hash blueprint_type = c_hash(blueprint_data["type"].get<std::string>());
-					auto it = m_blueprints.find(blueprint_type);
-					if (it != m_blueprints.end())
+					c_hash manager_type = c_hash(data["type"].get<std::string>());
+					auto it = m_managers.find(manager_type);
+					if (it != m_managers.end())
 					{
-						it->second->load(blueprint_data);
+						it->second->load(data);
 					}
 				}
 			}
@@ -34,7 +34,7 @@ namespace tt
 
 	void c_factory::create()
 	{
-		for (auto& [key, value] : m_blueprints)
+		for (auto& [key, value] : m_managers)
 		{
 			value->create();
 		}

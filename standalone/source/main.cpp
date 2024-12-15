@@ -1,28 +1,27 @@
 #include "factory/factory.h"
-#include "factory/blueprint.h"
+#include "factory/manager.h"
 #include "core/log.h"
 
 using namespace tt;
 
-class c_test_blueprint : public c_blueprint
+class c_test_manager : public c_manager
 {
 public:
-	static c_hash get_hash()
-	{
-		return "test"_h;
-	}
+	static constexpr c_hash manager_type = "test"_h;
 
 public:
-	virtual void create()
+	void create() override
 	{
-		logln("c_test_blueprint::create");
+		logln("c_test_manager::create");
 	};
+
+	c_hash get_type() const override { return manager_type; }
 };
 
 int main()
 {
 	c_factory factory;
-	factory.register_blueprint<c_test_blueprint>();
+	factory.register_manager<c_test_manager>();
 	factory.load("test.json");
 	factory.create();
 
