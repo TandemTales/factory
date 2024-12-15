@@ -21,6 +21,17 @@ namespace tt
 			m_managers[T::manager_type] = new T();
 		}
 
+		template<class T>
+		T* get_manager()
+		{
+			auto it = m_managers.find(T::manager_type);
+			if (it != m_managers.end())
+			{
+				return static_cast<T*>(it->second);
+			}
+			return nullptr;
+		}
+
 	private:
 		c_json m_data;
 		std::unordered_map<c_hash, c_manager*, s_hash_hasher> m_managers;
