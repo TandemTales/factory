@@ -10,9 +10,9 @@ public:
 	static constexpr c_hash manager_type = "test"_h;
 
 public:
-	void create() override
+	void create_instance(c_hash name, c_json& data) override
 	{
-		logln("c_test_manager::create");
+		logln("c_test_manager::create_instance");
 	};
 
 	c_hash get_type() const override { return manager_type; }

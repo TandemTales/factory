@@ -25,6 +25,14 @@ namespace tt
 		return true;
 	}
 
+	void c_manager::create()
+	{
+		for (auto& [key, value] : m_data)
+		{
+			create_instance(key, value);
+		}
+	}
+
 	c_json* c_manager::get_data(c_hash key)
 	{
 		auto it = m_data.find(key);

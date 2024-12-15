@@ -10,7 +10,8 @@ namespace tt
 	{
 	public:
 		bool load(c_json& data);
-		virtual void create() = 0;
+		virtual void create();
+		virtual void create_instance(c_hash name, c_json& data) = 0;
 		c_json* get_data(c_hash key);
 		virtual c_hash get_type() const = 0;
 
