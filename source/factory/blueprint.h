@@ -1,6 +1,6 @@
 #pragma once
 
-#include "json.h"
+#include "json/json.h"
 #include "core/hash.h"
 
 namespace tt
@@ -8,9 +8,9 @@ namespace tt
 	class c_blueprint
 	{
 	public:
-		void load(std::string const& file_name) { m_data.load(file_name); }
+		void load(c_json const& data) { m_data = data; }
 		virtual void create() = 0;
-		virtual c_hash get_hash() = 0;
+		c_json const& get_data() const { return m_data; }
 
 	private:
 		c_json m_data;

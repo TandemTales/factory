@@ -9,6 +9,14 @@ include(../cmake/CPM.cmake)
 
 CPMAddPackage(NAME factory SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
 
+# Add package: TandemTales/core
+CPMAddPackage(
+	NAME core
+	GITHUB_REPOSITORY TandemTales/core
+	#VERSION 0.0.1
+	GIT_TAG main
+)
+
 # ---- Create standalone executable ----
 file(GLOB sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp")
 
